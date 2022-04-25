@@ -1,0 +1,13 @@
+@import "~bootstrap/scss/functions";
+@import "fonts/fonts";
+@import "bootstrap/variables";
+
+.theme {
+  &.light-theme {
+    @import 'themes/lightTheme';
+  }
+
+  &.dark-theme {
+    @import 'themes/darkTheme';
+  }
+}

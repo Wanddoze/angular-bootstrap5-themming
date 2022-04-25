@@ -1,0 +1,82 @@
+@import "maps/dark.scss";
+
+$colors: map-merge($colors, $colors-dark);
+$theme-colors: map-merge($theme-colors, $dark-theme);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+$utilities-colors: map-merge($utilities-colors, $theme-colors-rgb);
+$utilities-text-colors: map-loop($utilities-colors, rgba-css-var, "$key", "text");
+$utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
+
+@import "variables/dark_var"; // as variables;
+
+@at-root .dark-theme {
+
+    @each $color,
+    $value in $colors-dark {
+        --#{$variable-prefix}#{$color}: #{$value};
+    }
+        
+    @each $color,
+    $value in $dark-theme {
+        --#{$variable-prefix}#{$color}: #{$value};
+    }
+    
+    --#{$variable-prefix}font-sans-serif: #{inspect($font-family-sans-serif)};
+    --#{$variable-prefix}font-monospace: #{inspect($font-family-monospace)};
+    --#{$variable-prefix}gradient: #{$gradient};
+    font-size: $font-size-root;
+    
+    @each $color,
+    $value in $theme-colors-rgb{
+        --#{$variable-prefix}#{$color}-rgb: #{$value};
+    }
+
+    @if $enable-smooth-scroll {
+        @media (prefers-reduced-motion: no-preference) {
+            scroll-behavior: smooth;
+        }
+    }
+}
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/utilities"; // as utilities;
+@import "~bootstrap/scss/mixins";
+// Layout & components
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot"; // as reboot;
+@import "~bootstrap/scss/type"; // as type;
+@import "~bootstrap/scss/images"; // as images;
+@import "~bootstrap/scss/containers"; // as containers;
+@import "~bootstrap/scss/grid"; // as grid;
+@import "~bootstrap/scss/tables"; // as tables;
+@import "~bootstrap/scss/forms"; // as forms;
+@import "~bootstrap/scss/buttons"; // as buttons;
+@import "~bootstrap/scss/transitions"; // as transitions;
+@import "~bootstrap/scss/dropdown"; // as dropdown;
+@import "~bootstrap/scss/button-group"; // as group;
+@import "~bootstrap/scss/nav"; // as nav;
+@import "~bootstrap/scss/navbar"; // as navbar;
+@import "~bootstrap/scss/card"; // as card;
+@import "~bootstrap/scss/accordion"; // as accordion;
+@import "~bootstrap/scss/breadcrumb"; // as breadcrumb;
+@import "~bootstrap/scss/pagination"; // as pagination;
+@import "~bootstrap/scss/badge"; // as badge;
+@import "~bootstrap/scss/alert"; // as alert;
+@import "~bootstrap/scss/progress"; // as progress;
+@import "~bootstrap/scss/list-group"; // as group;
+@import "~bootstrap/scss/close"; // as close;
+@import "~bootstrap/scss/toasts"; // as toasts;
+@import "~bootstrap/scss/modal"; // as modal;
+@import "~bootstrap/scss/tooltip"; // as tooltip;
+@import "~bootstrap/scss/popover"; // as popover;
+@import "~bootstrap/scss/carousel"; // as carousel;
+@import "~bootstrap/scss/spinners"; // as spinners;
+@import "~bootstrap/scss/offcanvas"; // as offcanvas;
+
+// Helpers
+@import "~bootstrap/scss/helpers"; // as helpers;
+
+// Utilities
+@import "~bootstrap/scss/utilities/api"; // as api;
+// scss-docs-end import-stack
